@@ -1,0 +1,8 @@
+{
+  "code-runner.executorMap": {
+    "javascript": "\"C:\\Program Files\\nodejs\\node.exe\""
+  },
+  "code-runner.runInTerminal": false,
+  "code-runner.saveFileBeforeRun": true,
+  "code-runner.outputWindow": "output"
+}

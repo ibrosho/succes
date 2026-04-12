@@ -1,0 +1,389 @@
+<script>
+  //object and array
+  // for in / for off
+  //children and the toys the have
+ /* let people = [
+    {
+        name: "Mikie",
+        children: [
+        {name: "Peter", age:23, gender: "male"},
+         {name: "ewa", age:21, gender: "female"},
+        ],
+    },
+
+     {
+        name: "James",
+        children: [
+        {name: "Peter", age:23, gender: "male"},
+         {name: "ewa", age:21, gender: "female"},
+          {name: "tolu", age:31, gender: "female"},
+        ],
+    },
+  ]; 
+let num_child
+let num_f
+let num_m
+  for (let person of people) {
+    //console.log (person)
+    num_child= 0
+    num_m= 0
+    num_f= 0
+for (let child of person.children) {
+    // console.log (child)
+    if (child.gender == "male") {
+        num_m++
+    }
+    else {
+        num_f++
+    }
+    num_child++ 
+}
+    console.log (`${person.name} has ${num_child} children, ${num_m} male, ${num_f} female`)
+  }*/
+
+
+  let cars = [
+    {
+        name: "akanni",
+        age: [ 21 ],
+        cars: ["Jeep", "lambo", "benz"],
+    },
+
+    {
+        name: "faozil",
+        age: [ 22 ] ,
+        cars: ["ferrari",  "benz"],
+    },
+
+     {
+        name: "fawas",
+        age: [23], 
+        cars: ["porche"],
+    },
+  ];
+
+let num_age
+
+  for (let person of cars) {
+   console.log (person)
+   for (let num of person.cars) {
+    console.log (num) 
+   for (let num_age of cars) {
+    console.log (num_age) 
+    num_age++
+   } 
+  
+   } 
+  
+  console.log (`${person.name} has ${person.cars} at the age of ${person.age}`) 
+  }
+  
+  
+
+  // 1. find the Average age of the people
+  // 2. find all cars own by a prson
+  // 3. count all the cars
+
+  function greet(name) {
+    console.log(`Hello ${name}! how you dey`);
+}
+const people = ["Faozil", "Oyin", "Akanni"];
+
+for (let p of people) {
+  greet(p)
+}
+
+//function
+
+function addNumbers(a,b) {
+
+  return a + b
+}
+
+const result = addNumbers(100, 44)
+  console.log(result);
+
+  //area of a circle 
+  function areaofCircle(r) {
+
+    const pi = 22/7;
+    let result = pi * (r ** 2);
+
+    return result;
+    
+  }
+  console.log(areaofCircle(4.5));
+
+  //function calculator
+  
+  function multiplication(xtable) {
+     let rseult
+  for ( let xtable = 4; xtable < 10; xtable++) {
+    console.log (`${xtable} times table`);
+    console.log(`==============`);
+    for (let times = 2; times < 14; times++) {
+      rseult = xtable * times
+      console.log(`${xtable} * ${times} = ${rseult}`)
+    }
+    
+     }
+     return xtable;
+  }
+  console.log(multiplication(""))
+
+
+ /*let arr = ["BMW", "LAMBO","GWAGON"];
+console.log(arr[1]);
+console.log(`my arr has a length of ${arr.length}`);
+   for (let i = 0; i < arr.length; i++) {
+    console.log (`${arr[i]} is the index ${i}`)
+   }; 
+
+   //forEach
+   console.log(`== forEach () ==`);
+   arr.forEach(function (value, index) {
+    console.log (`${value} is the index ${index}`)
+   })
+   //pop ddelete item in the end
+   arr.pop();
+   console.log(`${arr} after pop()`);
+
+   //push- add item in the end
+    arr.push( "toyota");
+   console.log(`${arr} after push()`);
+
+   // unshift add item in the beining
+    arr.unshift("lolol");
+   console.log(`${arr} after unshift()`);
+
+   //splice exttract new from thne current
+    arr.splice(2, 2);
+   console.log(`${arr} after splice ${2,2}`);
+
+   //index of item
+
+   let idot = arr.indexOf("ford");
+   console.log(`${arr} ford index is`);
+
+   //search value
+   let myarr = [1, 4, 44, 37, 56,54, 43, 435, 55, 88];
+   
+   function lsearch(arr,key){
+    arr.forEach(function(value,index){
+      if(key == value)
+    })
+   }
+    function greet() {
+    console.log("there")
+}
+
+
+greet("");*/<script>
+    let r = 23.65675;
+    console.log(r.toFixed(2))
+    const text = "hello";
+    const textt = 'world';
+
+    let msg = "i have 'single quote'";
+    let msg2 = ' i have " double quote"';
+    console.log(msg); console.log(msg2);
+
+    let a = 12;
+    let b =14;
+    let ab = a*b;
+    let mes = `a*b = ${ab}`;
+    console.log(mes.length)
+    //boolean
+    let flag = true
+    let counter = false
+    console.log(flag);
+    //object
+
+    let person = {name: {firstname:"micheal",
+        secondname:"odunayo",
+    },
+        age: 25, 
+        disable:false,
+    };
+    console.log(person);
+ // switch
+
+ let device_name = "apple"
+ let age = 18
+ switch (device_name) {
+    case "apple":
+        if(age >=18) {
+            console.log ("mature user")
+        };
+        console.log ("this is an apple device")
+        break; 
+         case "google":
+        console.log ("this is a google device")
+        break;
+        default:
+            console.log ("Unkown device")
+            break;
+
+ }
+
+ let x = 6
+ if ( x >= 5) {
+    console.log ("true")
+ }
+ else {
+    console.log ("false")
+ }
+ let servive_name = "samsung"
+ if (servive_name == "macbook") {
+ console.log ("You are using a hp laptop")
+}
+else if ( servive_name == "samsung") {
+    console.log ("am using a samsung")
+}
+ else {
+    console.log ("You are using unkown device")
+ }
+
+ //
+ let z = 10
+ let y = 20
+ if (z == 10 && y==10) {
+     console.log ("true")
+ }
+ //&& and
+ // || or
+  else {
+    console.log ("false")
+ } 
+
+ // for loop
+ const table = 100
+ let result
+  for (let c = 1; c <= 12; c++) {
+    result = table * c
+    console.log (`${table} * ${c} = ${result}`);
+  }
+
+  //a loop in a loop
+  let reult
+  for ( let xtable = 4; xtable < 10; xtable++) {
+    console.log (`${xtable} times table`);
+     console.log (`===============`);
+     for (let times = 1; times < 13; times++) {
+        reult = xtable * times
+        console.log (`${xtable} * ${times} = ${reult} `)
+     }
+  }
+  //do while loops
+  let c = 0;
+  do {
+      console.log (c)
+      c++
+  }
+
+  while (c < 11)
+  //while loop
+let v = 1
+while (v < 11) {
+    console.log (v);
+    v++;
+}
+
+//object and array
+//for in/ for off
+
+let cars = {
+    engine: "55hp",
+    type: "jeep",
+    dooor: 4
+}
+let people = ["Mike", "James", "seun"]
+/*console.log (cars ['type'])
+console.log (people []) */
+
+/*for (let c in cars) {
+console.log (` the property ${c} is ${cars [c]}`*/
+
+for (let i in people)
+ {
+console.log (` the index ${i} is ${people [i]}`)
+}
+ 
+
+
+   
+
+    
+
+
+
+</script>
+
+  
+     
+</script>
+
+ function onbulb() {
+    let bulb = document.getElementById("bulb");
+    bulb.src = "on.png";
+}
+function offbulb() {
+    let bulb = document.getElementById("bulb");
+    bulb.src = "off.png";
+}
+let offbutton = document.getElementById("offbutton");
+offbutton.style.backgroundColor = "red";
+offbutton.style.color = "white";
+offbutton.style.borderRadius = "8px";
+
+let onbutton = document.getElementById("onbutton");
+onbutton.style.backgroundColor = "pink";
+onbutton.style.color = "blue";
+onbutton.style.borderRadius = "8px";
+
+<html>
+    <head>
+        <title>aka</title>
+       <link rel="stylesheet" href="juwon.css"/>
+    </head>
+    <body>
+        <div> 
+        <button id="onbutton" onclick="onbulb()">on</button>
+       <button id="offbutton" onclick="offbulb()" >off</button>
+    </div>
+       <img id="bulb" src="off.png" width="100px"/>
+    </body>
+    <script src="juwon.js"></script>
+
+    </html>
+    //
+
+    function createNewElement() {
+    let container = document.getElementById("content");
+  let el = document.createElement("div");
+  el.innerHTML = Math.random();
+  el.className = "gen";
+  container.appendChild(el);
+  console.log(container);
+}
+function deleteLast() {
+    let item = document.querySelector(".gen:last-child ");
+    item.remove();
+}
+
+//
+<html>
+    <head>
+        <title>aka</title>
+       <link rel="stylesheet" href="juwon.css"/>
+    </head>
+    <body>
+       <button onclick="createNewElement()">Generate random number</button>
+       <button onclick="deleteLast()">Delete</button>
+       <div id="content">
+
+       </div>
+    </body>
+    <script src="juwon.js"></script>
+
+    </html>
