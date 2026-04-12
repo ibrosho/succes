@@ -23,7 +23,7 @@
     background-size: cover;
 }
 .tag{
-    background-color: transparent;
+    background: linear-gradient(to right, #D4AF37, #FFD700);
     color: black;
     border: solid 2px gold;
     padding: 5px 10px;
