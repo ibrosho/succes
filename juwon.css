@@ -1,5 +1,7 @@
-body{
-background-color: black;
+ body{
+background-image: url(my\ card/bg.jpeg);
+background-size: cover;
+background-position: center;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -14,6 +16,7 @@ height: 100vh;
     padding: 20px 10px;
     text-align: right;
     color:white;
+    
 }
 .buttons{
     display: grid;
@@ -24,7 +27,7 @@ height: 100vh;
 .btn-number,.btn-alt,.btn-operator{
     height: 55px;
     border-radius: 50%;
-    background: #335;
+    background: lightblue;
     color: white;
     display: flex;
     justify-content: center;
@@ -34,7 +37,7 @@ height: 100vh;
     
 }
 .btn-number:hover,.btn-operator:hover{
-    background: #a5a5a5;
+    background: gold;
 }
 .btn-alt:hover,.zero:hover{
     background: green;
@@ -50,7 +53,7 @@ height: 100vh;
     cursor: pointer;
     height: 55px;
     border-radius: 50%;
-    background: #335;
+    background: gold;
 }
  .btn-alt{
     background: #a5a5a5;
@@ -67,4 +70,4 @@ height: 100vh;
     justify-content: flex-start;
     padding-left: 55px;
  }
-
+ 

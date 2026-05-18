@@ -49,7 +49,7 @@ console.log(output);
 // find tune the bubble sort and make it more efficient
 function sSort2(arr) {
   let swapped;
-  for (let i=0; i < arr,length; i++) {
+  for (let i=0; i < arr.length; i++) {
     swapped = false;
     for (let j=0; j < arr.length -1 -i; j++) {
       if (arr[j] > arr[j+1]) {
@@ -60,5 +60,7 @@ function sSort2(arr) {
           swapped = true;
       }
     }
+    if (!swapped) break;
   }
+  return arr;
 }

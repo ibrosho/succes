@@ -1,0 +1,314 @@
+/* RESET */
+* {
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    color: #fff;
+    line-height: 1.6;
+    
+
+    /* Gradient base */
+    background: radial-gradient(circle at top left, #1a1a2e, #0f0f0f);
+
+    /* Grid overlay */
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.05) 1px, 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Noise texture */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("https://www.tansparenttextures.com/patterns/noise.png");
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #111, #1c1c1c);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: auto;
+    color: #bbb;
+    font-size: 18px;
+}
+
+/* GLOW EFFECTS */
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: #6c63ff;
+    filter: blur(120px);
+    top: -100px;
+    left: -100px;
+    opacity: 0.5;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: #00ffcc;
+    filter: blur(120px);
+    bottom: -100px;
+    right: -100px;
+    opacity: 0.4;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: white;
+    color: black;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-green {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-green:hover {
+    transform: translateY(-3px);
+}
+
+/* SECTIONS */
+section {
+    padding: 70px 20px;
+    max-width: 1100px;
+    margin: auto;
+    
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* CARDS */
+.card {
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* PROJECTS */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.project {
+    border-radius: 12px;
+    overflow: hidden;
+
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    transition: 0.3s ease;
+}
+
+.project:hover {
+    transform: translateY(-8px);
+}
+
+.project img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.project h3 {
+    margin: 10px;
+}
+
+.project p {
+    margin: 0 10px 15px;
+    color: #bbb;
+}
+
+/* CONTACT */
+.contact {
+    text-align: center;
+    background: rgba(255,255,255,0.02);
+    border-radius: 12px;
+    padding: 50px 20px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 13px;
+}
+
+/* ===== GALLERY CARD ===== */
+.gallery-item {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+/* IMAGE STYLE */
+.gallery-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: 0.6s ease;
+    display: block;
+}
+
+/* CINEMATIC HOVER ZOOM */
+.gallery-item:hover .gallery-img {
+    transform: scale(1.08);
+    filter: brightness(0.6);
+}
+
+/* TEXT OVERLAY */
+.overlay-text {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    font-size: 14px;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.4s ease;
+    letter-spacing: 0.5px;
+}
+
+.gallery-item:hover .overlay-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== CINEMATIC LIGHTBOX ===== */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+    z-index: 9999;
+}
+
+/* ACTIVE LIGHTBOX */
+.lightbox:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* CINEMATIC IMAGE POP */
+.lightbox img {
+    max-width: 85%;
+    max-height: 85%;
+    border-radius: 12px;
+
+    transform: scale(0.7);
+    opacity: 0;
+    transition: 0.5s ease;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+/* IMAGE ENTER ANIMATION */
+.lightbox:target img {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* CLOSE BACKDROP */
+.close {
+    position: absolute;
+    inset: 0;
+}
+
+/* ===== CINEMATIC LIGHT GLOW ===== */
+.lightbox::before,
+.lightbox::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    filter: blur(140px);
+    opacity: 0.25;
+    animation: floatGlow 6s ease-in-out infinite;
+}
+
+.lightbox::before {
+    background: #6c63ff;
+    top: 10%;
+    left: 10%;
+}
+
+.lightbox::after {
+    background: #00ffcc;
+    bottom: 10%;
+    right: 10%;
+}
+
+/* FLOAT ANIMATION */
+@keyframes floatGlow {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-25px); }
+    100% { transform: translateY(0px); }
+}
