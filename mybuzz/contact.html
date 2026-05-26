@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Creativity By Akanni</title>
+    <link rel="stylesheet" href="portfolio.css">
+    <style>
+        .contact-hero { padding: 150px 20px; text-align: center; }
+        .contact-list { list-style: none; max-width: 600px; margin: 40px auto; }
+        .contact-item { 
+            background: rgba(255,255,255,0.03); 
+            margin-bottom: 15px; 
+            padding: 25px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.4s;
+        }
+        .contact-item:hover { transform: scale(1.05); background: rgba(255,255,255,0.07); border-color: var(--accent); }
+        .contact-item a { color: var(--accent); text-decoration: none; font-weight: bold; }
+        .ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 50px; }
+        .ig-grid img { width: 100%; border-radius: 10px; opacity: 0.6; transition: 0.5s; }
+        .ig-grid img:hover { opacity: 1; }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+    <div class="mesh-gradient"></div>
+    <nav class="navbar"><div class="logo"><a href="index.html" style="color:white;text-decoration:none;">← BACK</a></div></nav>
+
+    <section class="contact-hero">
+        <h1 class="reveal active">Connect with the Studio</h1>
+        <p>Ready to deploy your next big project? Choose your preferred secure node below.</p>
+        
+        <ul class="contact-list">
+            <li class="contact-item reveal active">
+                <span>Direct Hotline</span>
+                <a href="tel:+2349090047391">CALL NODE</a>
+            </li>
+            <li class="contact-item reveal active">
+                <span>Encrypted Chat</span>
+                <a href="https://wa.me/2349090047391">WHATSAPP</a>
+            </li>
+            <li class="contact-item reveal active">
+                <span>Visual Identity</span>
+                <a href="https://instagram.com/akanni_btc">INSTAGRAM</a>
+            </li>
+        </ul>
+    </section>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akanni Creative Studio</title>
+
+<!-- SOCIAL META TAGS (OpenGraph) -->
+<meta property="og:title" content="Akanni Creative Studio | Bespoke Digital Identities">
+<meta property="og:description" content="Elevating brands through high-fidelity design, luxury packaging, and conversion-focused web architecture.">
+<meta property="og:image" content="https://yourdomain.com/royal-bag.png"> <!-- Change to your actual domain -->
+<meta property="og:url" content="https://yourdomain.com">
+<meta property="og:type" content="website">
+
+<!-- TWITTER CARDS -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Akanni Creative Studio">
+<meta name="twitter:description" content="Bespoke Branding & Web Architecture.">
+<meta name="twitter:image" content="https://yourdomain.com/royal-bag.png">
+
+<link rel="stylesheet" href="portfolio.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- SCROLL PROGRESS BAR -->
+<div id="scroll-progress"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+    <div class="loader-text" id="loader-status">INITIALIZING NODE...</div>
+    <div id="loader-log" style="font-family: monospace; font-size: 0.7rem; color: #444; margin-top: 10px;"></div>
+</div>
+
+<!-- PREMIUM OVERLAYS -->
+<div class="grain"></div>
+<div class="mesh-gradient"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">Creativity By Akanni</div>
+
+    <div class="nav-container">
+        <div class="theme-toggle magnetic" onclick="toggleTheme()">🌓</div>
+        <div class="menu-trigger magnetic" onclick="toggleMenu()">MENU</div>
+    </div>
+</nav>
+
+<div id="full-menu" class="menu-overlay">
+    <div class="close-menu" onclick="toggleMenu()">CLOSE</div>
+    <div class="menu-links">
+        <a href="index.html" style="--i:1" onclick="toggleMenu()">Home</a>
+        <a href="dashboard.html" style="--i:2" onclick="toggleMenu()">Dashboard</a>
+        <a href="#services" style="--i:3" onclick="toggleMenu()">Services</a>
+        <a href="#work" style="--i:4" onclick="toggleMenu()">Featured Work</a>
+        <a href="contact.html" style="--i:5">Contact Us</a>
+        <div class="menu-theme-btn stagger" style="--i:6" onclick="toggleTheme()">Toggle Visual Mode</div>
+        <a href="#" style="--i:7" class="login-btn" onclick="logout()">Logout</a>
+    </div>
+</div>
+
+<!-- PICTURE LOOP MARQUEE -->
+<div class="picture-loop">
+    <div class="loop-track">
+        <img src="royal-bag.png" alt="1" loading="lazy">
+        <img src="perfume-card.png" alt="2" loading="lazy">
+        <img src="kim-trendy-bag.webp" alt="3" loading="lazy">
+        <img src="royal-bag.png" alt="4" loading="lazy">
+        <img src="perfume-card.png" alt="5" loading="lazy">
+        <img src="kim-trendy-bag.webp" alt="6" loading="lazy">
+    </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="container">
+        <h1 data-value="Bespoke Digital Identities">Bespoke Digital Identities</h1>
+        <p>Elevating startups and established brands through high-fidelity design, luxury packaging, and conversion-focused web architecture.</p>
+        <a href="#contact" class="btn magnetic">Start a Project</a>
+    </div>
+</header>
+
+<!-- SERVICES -->
+<section id="services" class="reveal">
+    <div class="container">
+        <h2>What We Do</h2>
+
+        <div class="grid">
+            <div class="card">Brand Identity Design</div>
+            <div class="card">Logo Design</div>
+            <div class="card">Packaging Design</div>
+            <div class="card">Business Websites</div>
+            <div class="card">Social Media Design</div>
+            <div class="card">Printing Design</div>
+        </div>
+    </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="reveal">
+    <h2>Featured Projects</h2>
+
+    <div class="projects">
+
+        <!-- PROJECT 1 -->
+        <div class="project">
+            <a href="royal-bag.png" class="gallery-item" onclick="openLightbox(event, this.href)">
+                <img src="royal-bag.png" alt="luxury bag" class="gallery-img">
+                <div class="overlay-text">Luxury Bag Branding</div>
+            </a>
+
+            <h3>Luxury Bag Branding</h3>
+            <p>Custom nylon packaging design for a fashion brand, focused on clean luxury aesthetics.</p>
+            <div class="pricing-table">
+                <div class="price-tag"><b>Small</b> (100pcs): ₦25k</div>
+                <div class="price-tag"><b>Medium</b> (100pcs): ₦35k</div>
+                <div class="price-tag"><b>Large</b> (100pcs): ₦50k</div>
+            </div>
+        </div>
+
+        <!-- PROJECT 2 -->
+        <div class="project">
+            <a href="perfume-card.png" class="gallery-item" onclick="openLightbox(event, this.href)">
+                <img src="perfume-card.png" alt="perfume card" class="gallery-img">
+                <div class="overlay-text">Perfume Identity</div>
+            </a>
+
+            <h3>Perfume Brand Identity</h3>
+            <p>Premium business card design using black and gold theme for a perfume brand.</p>
+            <div class="pricing-table">
+                <div class="price-tag"><b>Standard</b> (100pcs): ₦15k</div>
+                <div class="price-tag"><b>Premium</b> (100pcs): ₦25k</div>
+                <div class="price-tag"><b>Gold Foil</b> (100pcs): ₦40k</div>
+            </div>
+        </div>
+
+        <!-- PROJECT 3 -->
+        <div class="project">
+            <a href="kim-trendy-bag.webp" class="gallery-item" onclick="openLightbox(event, this.href)">
+                <img src="kim-trendy-bag.webp" alt="Kim Trendy Bag" class="gallery-img">
+                <div class="overlay-text">Trendy Fashion Brand</div>
+            </a>
+
+            <h3>Kim Trendy Bag</h3>
+            <p>Modern shopping bag branding with bold typography and feminine style.</p>
+            <div class="pricing-table">
+                <div class="price-tag"><b>Small</b> (100pcs): ₦20k</div>
+                <div class="price-tag"><b>Medium</b> (100pcs): ₦30k</div>
+                <div class="price-tag"><b>Large</b> (100pcs): ₦45k</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- AI CHAT UI -->
+<div id="ai-chat-box">
+    <div class="chat-header">CreativityByAkanni Node</div>
+    <div class="chat-body" id="chat-messages">
+        <div class="ai-msg">Welcome to the studio! How can we elevate your brand today?</div>
+    </div>
+    <div class="chat-footer">
+        <label for="image-upload" style="cursor:pointer; font-size:1.2rem;">📷</label>
+        <input type="file" id="image-upload" style="display:none" onchange="handleImageUpload(this)">
+        <input type="text" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
+        <button onclick="sendMessage()" style="background:none; border:none; color:var(--accent); font-weight:bold;">SEND</button>
+    </div>
+</div>
+<div class="ai-chat-launcher" onclick="toggleChat()">💬</div>
+
+<!-- DYNAMIC LIGHTBOX NODE -->
+<div id="studio-lightbox" class="lightbox" onclick="closeLightbox()">
+    <div class="close"></div>
+    <img id="lightbox-img" src="" onclick="event.stopPropagation()">
+</div>
+
+<!-- FOOTER -->
+<footer>
+    © 2026 Creativity By Akanni. All Rights Reserved.
+</footer>
+
+<!-- LOGOUT MODAL -->
+<div id="logout-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h2 class="glitch-title">TERMINATE SESSION?</h2>
+        <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Are you sure you want to disconnect from the studio node?</p>
+        <div class="modal-actions">
+            <button class="price-tag" onclick="confirmLogout()" style="background: var(--accent); color: black; border: none; cursor: pointer;">CONFIRM</button>
+            <button class="price-tag" onclick="cancelLogout()" style="cursor: pointer;">CANCEL</button>
+        </div>
+    </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

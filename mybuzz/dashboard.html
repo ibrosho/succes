@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Dashboard | Akanni Node</title>
+<link rel="stylesheet" href="portfolio.css">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="reveal active">
+    <div id="preloader"><div class="loader-text">INITIALIZING DASHBOARD...</div></div>
+    <div class="grain"></div>
+    <div class="mesh-gradient"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            Akanni Node / Dashboard 
+            <span class="status-dot"></span>
+            <div class="signal-bars">
+                <div class="bar active"></div>
+                <div class="bar active"></div>
+                <div class="bar active"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+        <div class="nav-container">
+            <div class="menu-trigger magnetic" onclick="toggleMenu()">MENU</div>
+        </div>
+    </nav>
+
+    <div id="full-menu" class="menu-overlay">
+        <div class="close-menu" onclick="toggleMenu()">CLOSE</div>
+        <div class="menu-links">
+            <a href="index.html" style="--i:1">Home</a>
+            <a href="dashboard.html" style="--i:2">Dashboard</a>
+            <a href="contact.html" style="--i:3">Contact</a>
+            <a href="#" style="--i:4" class="login-btn" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+    <main class="dashboard-container">
+        <header class="dash-header">
+            <div>
+                <p data-value="WELCOME BACK" style="color: var(--accent); font-weight: bold; letter-spacing: 2px;">WELCOME BACK</p>
+                <h1 data-value="Abdulmalik Shodipo" style="font-size: 3rem; letter-spacing: -2px;">Abdulmalik Shodipo</h1>
+            </div>
+            <div class="price-tag reveal">Status: Node Active</div>
+        </header>
+
+        <div class="dash-grid">
+            <section class="stat-card">
+                <div class="vault-header">
+                    <span class="vault-icon" id="folder-status">📁</span>
+                    <h3>Digital Vault / Assets</h3>
+                </div>
+                <p>Secure branding repository for <b>Royal Bag Identity</b>.</p>
+                <div class="vault-list">
+                    <div class="vault-item">
+                        <span>Primary_Identity_Package.zip</span>
+                        <a href="#" class="price-tag">DOWNLOAD</a>
+                    </div>
+                    <div class="vault-item">
+                        <span>Social_Media_Kit_v2.zip</span>
+                        <a href="#" class="price-tag">DOWNLOAD</a>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item current">
+                        <span class="timeline-date">JAN 2026</span>
+                        <span class="timeline-desc">High-Fidelity Prototyping Phase</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-date">DEC 2025</span>
+                        <span class="timeline-desc">Initial Concepts & Moodboarding</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-date">NOV 2025</span>
+                        <span class="timeline-desc">Protocol Initialization</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stat-card">
+                <h3>Active Project: Royal Bag Identity</h3>
+                <p>Phase: High-Fidelity Prototyping</p>
+                
+                <!-- PROJECT BRIEF UPLOAD -->
+                <div class="calculator-group" style="margin-top: 20px;">
+                    <label>Project Briefs / Documentation</label>
+                    <div id="briefs-list" class="vault-list" style="margin-bottom: 15px;">
+                        <!-- Briefs will appear here -->
+                    </div>
+                    <label for="brief-upload" class="price-tag" style="display: inline-block; cursor: pointer; background: var(--accent); color: black; border: none;">
+                        + UPLOAD NEW BRIEF
+                    </label>
+                    <input type="file" id="brief-upload" style="display: none;" onchange="handleBriefUpload(this)">
+                </div>
+
+                <div class="progress-track"><div class="progress-fill" style="width: 65%;"></div></div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #666;">
+                    <span>Conceptualization</span>
+                    <span>Final Polish</span>
+                </div>
+
+                <!-- PROJECT COUNTDOWN -->
+                <div class="countdown-container">
+                    <div class="countdown-label">ESTIMATED DEPLOYMENT:</div>
+                    <div id="countdown-timer" class="countdown-timer">00d 00h 00m 00s</div>
+                </div>
+            </section>
+
+            <section class="stat-card">
+                <h3>Referral Protocol</h3>
+                <p>Earn 10% discount on your next deployment by inviting other nodes.</p>
+                <div class="referral-code">
+                    <code id="ref-code">AKANNI-NODE-99</code>
+                    <span class="copy-btn" onclick="copyReferral()">COPY</span>
+                </div>
+                <p style="font-size: 0.75rem; color: #666; margin-top: 10px;">
+                    3 successful referrals detected. Reward: Executive Tier Pricing active.
+                </p>
+            </section>
+
+            <section id="calc-section" class="stat-card">
+                <h3>Protocol Cost Estimator</h3>
+                <p>Simulate project variables to generate a preliminary quote.</p>
+
+                <!-- FORM INTEGRATION (Replace YOUR_ID with your Formspree ID) -->
+                <form action="https://formspree.io/f/xpqnyyqw" method="POST" id="deployment-form">
+                <div class="calculator-group" style="margin-top:20px;">
+                    <label>Module Selection</label>
+                    <select id="calc-service" name="Service">
+                        <option value="packaging">Luxury Nylon Packaging</option>
+                        <option value="branding">Bespoke Brand Identity</option>
+                        <option value="web">Web Architecture Node</option>
+                    </select>
+                </div>
+                <div id="calc-tier-group" class="calculator-group">
+                    <label>Identity Tier</label>
+                    <select id="calc-tier" name="Tier">
+                        <option value="standard">Standard (Basic)</option>
+                        <option value="premium">Premium (Enhanced)</option>
+                        <option value="luxury">Executive (Luxury)</option>
+                    </select>
+                </div>
+                <div class="calculator-group">
+                    <label>Unit Volume: <span id="qty-val" style="color:var(--accent); font-weight:bold;">100</span> units</label>
+                    <input type="range" id="calc-qty" name="Quantity" min="1" max="50" value="1">
+                </div>
+
+                <!-- Hidden price field sent to your email -->
+                <input type="hidden" name="estimated_price" id="hidden-total">
+
+                <div class="estimate-box">
+                    <span>Estimated Investment Node:</span>
+                    <h2 id="calc-total">₦0</h2>
+                </div>
+                <button type="submit" class="btn-invoice" style="background: var(--accent); color: black;">DEPLOY PROJECT REQUEST</button>
+                </form>
+                <button class="btn-invoice" style="margin-top:10px" onclick="generateInvoice()">GENERATE INVOICE PDF</button>
+            </section>
+
+            <aside class="stat-card">
+                <h3 style="margin-bottom: 20px;">System Logs</h3>
+                <div class="log-entry">[14:02] Design Reference received.</div>
+                <div class="log-entry">[Yesterday] Invoice #882 Paid.</div>
+                <div class="log-entry">[Monday] Initial Node deployment.</div>
+            </aside>
+        </div>
+    </main>
+
+    <div id="ai-chat-box">
+        <div class="chat-header">AI Assistant</div>
+        <div class="chat-body" id="chat-messages"></div>
+        <div class="chat-footer">
+            <label for="image-upload" style="cursor:pointer; font-size:1.2rem;">📷</label>
+            <input type="file" id="image-upload" style="display:none" onchange="handleImageUpload(this)">
+            <input type="text" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()" style="background:none; border:none; color:var(--accent); font-weight:bold;">SEND</button>
+        </div>
+    </div>
+    <div class="ai-chat-launcher" onclick="toggleChat()">🤖</div>
+
+    <script src="main.js"></script>
+</body>
+</html>
