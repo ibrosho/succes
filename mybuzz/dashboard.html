@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Client Dashboard | Akanni Node</title>
+
+<!-- AUTH GATE -->
+<script>
+    if (localStorage.getItem('akanni_node_auth') !== 'true') {
+        window.location.href = 'login.html';
+    }
+</script>
+
 <link rel="stylesheet" href="portfolio.css">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -41,8 +49,8 @@
     <main class="dashboard-container">
         <header class="dash-header">
             <div>
-                <p data-value="WELCOME BACK" style="color: var(--accent); font-weight: bold; letter-spacing: 2px;">WELCOME BACK</p>
-                <h1 data-value="Abdulmalik Shodipo" style="font-size: 3rem; letter-spacing: -2px;">Abdulmalik Shodipo</h1>
+                <p data-value="WELCOME BACK" class="welcome-label">WELCOME BACK</p>
+                <h1 data-value="Abdulmalik Shodipo" class="client-name-heading">Abdulmalik Shodipo</h1>
             </div>
             <div class="price-tag reveal">Status: Node Active</div>
         </header>
@@ -86,19 +94,19 @@
                 <p>Phase: High-Fidelity Prototyping</p>
                 
                 <!-- PROJECT BRIEF UPLOAD -->
-                <div class="calculator-group" style="margin-top: 20px;">
-                    <label>Project Briefs / Documentation</label>
-                    <div id="briefs-list" class="vault-list" style="margin-bottom: 15px;">
+                <div class="calculator-group upload-container">
+                    <label for="brief-upload">Project Briefs / Documentation</label>
+                    <div id="briefs-list" class="vault-list briefs-display">
                         <!-- Briefs will appear here -->
                     </div>
-                    <label for="brief-upload" class="price-tag" style="display: inline-block; cursor: pointer; background: var(--accent); color: black; border: none;">
+                    <label for="brief-upload" class="price-tag btn-upload-label">
                         + UPLOAD NEW BRIEF
                     </label>
                     <input type="file" id="brief-upload" style="display: none;" onchange="handleBriefUpload(this)">
                 </div>
 
                 <div class="progress-track"><div class="progress-fill" style="width: 65%;"></div></div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #666;">
+                <div class="progress-labels">
                     <span>Conceptualization</span>
                     <span>Final Polish</span>
                 </div>
@@ -117,7 +125,7 @@
                     <code id="ref-code">AKANNI-NODE-99</code>
                     <span class="copy-btn" onclick="copyReferral()">COPY</span>
                 </div>
-                <p style="font-size: 0.75rem; color: #666; margin-top: 10px;">
+                <p class="referral-reward">
                     3 successful referrals detected. Reward: Executive Tier Pricing active.
                 </p>
             </section>
@@ -128,25 +136,26 @@
 
                 <!-- FORM INTEGRATION (Replace YOUR_ID with your Formspree ID) -->
                 <form action="https://formspree.io/f/xpqnyyqw" method="POST" id="deployment-form">
-                <div class="calculator-group" style="margin-top:20px;">
-                    <label>Module Selection</label>
-                    <select id="calc-service" name="Service">
+                <div class="calculator-group calc-form-container">
+                    <label for="calc-service">Module Selection</label>
+                    <select id="calc-service" name="Service" title="Select Service Module">
                         <option value="packaging">Luxury Nylon Packaging</option>
+                        <option value="paper_bags">Luxury Paper Bags</option>
                         <option value="branding">Bespoke Brand Identity</option>
                         <option value="web">Web Architecture Node</option>
                     </select>
                 </div>
                 <div id="calc-tier-group" class="calculator-group">
-                    <label>Identity Tier</label>
-                    <select id="calc-tier" name="Tier">
+                    <label for="calc-tier">Identity Tier</label>
+                    <select id="calc-tier" name="Tier" title="Select Service Tier">
                         <option value="standard">Standard (Basic)</option>
                         <option value="premium">Premium (Enhanced)</option>
                         <option value="luxury">Executive (Luxury)</option>
                     </select>
                 </div>
                 <div class="calculator-group">
-                    <label>Unit Volume: <span id="qty-val" style="color:var(--accent); font-weight:bold;">100</span> units</label>
-                    <input type="range" id="calc-qty" name="Quantity" min="1" max="50" value="1">
+                    <label for="calc-qty">Unit Volume: <span id="qty-val" class="calc-qty-display">100</span> units</label>
+                    <input type="range" id="calc-qty" name="Quantity" min="1" max="50" value="1" title="Select unit volume">
                 </div>
 
                 <!-- Hidden price field sent to your email -->
@@ -156,9 +165,9 @@
                     <span>Estimated Investment Node:</span>
                     <h2 id="calc-total">₦0</h2>
                 </div>
-                <button type="submit" class="btn-invoice" style="background: var(--accent); color: black;">DEPLOY PROJECT REQUEST</button>
+                <button type="submit" class="btn-invoice btn-deploy">DEPLOY PROJECT REQUEST</button>
                 </form>
-                <button class="btn-invoice" style="margin-top:10px" onclick="generateInvoice()">GENERATE INVOICE PDF</button>
+                <button class="btn-invoice btn-invoice-gen" onclick="generateInvoice()">GENERATE INVOICE PDF</button>
             </section>
 
             <aside class="stat-card">
@@ -174,10 +183,10 @@
         <div class="chat-header">AI Assistant</div>
         <div class="chat-body" id="chat-messages"></div>
         <div class="chat-footer">
-            <label for="image-upload" style="cursor:pointer; font-size:1.2rem;">📷</label>
-            <input type="file" id="image-upload" style="display:none" onchange="handleImageUpload(this)">
-            <input type="text" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
-            <button onclick="sendMessage()" style="background:none; border:none; color:var(--accent); font-weight:bold;">SEND</button>
+            <label for="image-upload" class="msg-upload-label">📷</label>
+            <input type="file" id="image-upload" class="hidden-input" onchange="handleImageUpload(this)">
+            <input type="text" id="ai-input-dash" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()" title="AI Chat Input">
+            <button onclick="sendMessage()" class="btn-chat-send">SEND</button>
         </div>
     </div>
     <div class="ai-chat-launcher" onclick="toggleChat()">🤖</div>

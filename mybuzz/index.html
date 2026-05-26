@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Akanni Creative Studio</title>
 
+<!-- AUTH GATE: Must run before page render -->
+<script>
+    if (localStorage.getItem('akanni_node_auth') !== 'true') {
+        window.location.href = 'login.html';
+    }
+</script>
+
 <!-- SOCIAL META TAGS (OpenGraph) -->
 <meta property="og:title" content="Akanni Creative Studio | Bespoke Digital Identities">
 <meta property="og:description" content="Elevating brands through high-fidelity design, luxury packaging, and conversion-focused web architecture.">
@@ -32,7 +39,7 @@
 <!-- PRELOADER -->
 <div id="preloader">
     <div class="loader-text" id="loader-status">INITIALIZING NODE...</div>
-    <div id="loader-log" style="font-family: monospace; font-size: 0.7rem; color: #444; margin-top: 10px;"></div>
+    <div id="loader-log" class="loader-log-container"></div>
 </div>
 
 <!-- PREMIUM OVERLAYS -->
@@ -79,7 +86,7 @@
     <div class="container">
         <h1 data-value="Bespoke Digital Identities">Bespoke Digital Identities</h1>
         <p>Elevating startups and established brands through high-fidelity design, luxury packaging, and conversion-focused web architecture.</p>
-        <a href="#contact" class="btn magnetic">Start a Project</a>
+        <a href="contact.html" class="btn magnetic">Start a Project</a>
     </div>
 </header>
 
@@ -119,6 +126,7 @@
                 <div class="price-tag"><b>Medium</b> (100pcs): ₦35k</div>
                 <div class="price-tag"><b>Large</b> (100pcs): ₦50k</div>
             </div>
+            <a href="case-study.html?id=royal-bag" class="btn btn-full">VIEW CASE STUDY</a>
         </div>
 
         <!-- PROJECT 2 -->
@@ -163,10 +171,10 @@
         <div class="ai-msg">Welcome to the studio! How can we elevate your brand today?</div>
     </div>
     <div class="chat-footer">
-        <label for="image-upload" style="cursor:pointer; font-size:1.2rem;">📷</label>
-        <input type="file" id="image-upload" style="display:none" onchange="handleImageUpload(this)">
-        <input type="text" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
-        <button onclick="sendMessage()" style="background:none; border:none; color:var(--accent); font-weight:bold;">SEND</button>
+        <label for="image-upload-home" class="msg-upload-label">📷</label>
+        <input type="file" id="image-upload-home" class="hidden-input" onchange="handleImageUpload(this)">
+        <input type="text" id="ai-input-home" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()" title="AI Chat Input">
+        <button onclick="sendMessage()" class="btn-chat-send">SEND</button>
     </div>
 </div>
 <div class="ai-chat-launcher" onclick="toggleChat()">💬</div>
@@ -174,11 +182,18 @@
 <!-- DYNAMIC LIGHTBOX NODE -->
 <div id="studio-lightbox" class="lightbox" onclick="closeLightbox()">
     <div class="close"></div>
-    <img id="lightbox-img" src="" onclick="event.stopPropagation()">
+    <img id="lightbox-img" src="" alt="Portfolio Full Resolution View" onclick="event.stopPropagation()">
 </div>
 
 <!-- FOOTER -->
 <footer>
+    <div class="newsletter-section">
+        <h4 class="glitch" data-text="JOIN THE NODE">JOIN THE NODE</h4>
+        <form action="#" class="newsletter-form">
+            <input type="email" placeholder="Enter Neural Address" required title="Newsletter Email">
+            <button type="submit" class="price-tag" style="border:none; cursor:pointer; background:var(--accent); color:black;">INITIALIZE</button>
+        </form>
+    </div>
     © 2026 Creativity By Akanni. All Rights Reserved.
 </footer>
 
@@ -186,10 +201,10 @@
 <div id="logout-modal" class="modal-overlay">
     <div class="modal-content">
         <h2 class="glitch-title">TERMINATE SESSION?</h2>
-        <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Are you sure you want to disconnect from the studio node?</p>
+        <p class="logout-subtext">Are you sure you want to disconnect from the studio node?</p>
         <div class="modal-actions">
-            <button class="price-tag" onclick="confirmLogout()" style="background: var(--accent); color: black; border: none; cursor: pointer;">CONFIRM</button>
-            <button class="price-tag" onclick="cancelLogout()" style="cursor: pointer;">CANCEL</button>
+            <button class="price-tag modal-btn-confirm" onclick="confirmLogout()">CONFIRM</button>
+            <button class="price-tag modal-btn-cancel" onclick="cancelLogout()">CANCEL</button>
         </div>
     </div>
 </div>

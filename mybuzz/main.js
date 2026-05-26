@@ -13,19 +13,24 @@ const playNotify = () => {
 
 // PRICING CONFIGURATION (Single source of truth)
 const RATES = {
-    packaging: { standard: 25000, premium: 35000, luxury: 50000 },
-    branding: { standard: 15000, premium: 25000, luxury: 40000 },
-    web: 150000
+    packaging: { standard: 120000, premium: 160000, luxury: 190000 },
+    branding: { standard: 5000, premium: 85000, luxury: 50000 },
+    paper_bags: { standard: 85000, premium: 98000, luxury: 120000 },
+    web: { standard: 5000000, premium: 7500000, luxury: 10000000 }
+};
+
+const PROJECT_DATA = {
+    'royal-bag': {
+        title: 'Royal Bag Identity',
+        category: 'PACKAGING NODE',
+        image: 'royal-bag.png',
+        challenge: 'The client required a packaging solution that balanced eco-friendly materials with high-end luxury aesthetics for a boutique fashion house.',
+        solution: 'We deployed a custom-weighted nylon structure with matte finishes and minimalist typography, emphasizing the brand’s premium positioning.'
+    }
 };
 
 // 0.0 AUTHENTICATION GATE (Simulated)
 const isLoginPage = window.location.pathname.includes('login.html');
-const isLoggedIn = localStorage.getItem('akanni_node_auth') === 'true';
-
-if (!isLoggedIn && !isLoginPage) {
-    window.location.href = 'login.html';
-}
-
 function logout() {
     const modal = document.getElementById('logout-modal');
     if (modal) {
@@ -79,8 +84,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     startScramble();
+    
+    // 0.2 CASE STUDY INJECTION
+    const csTitle = document.getElementById('cs-title');
+    if (csTitle) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('id');
+        const data = PROJECT_DATA[projectId] || PROJECT_DATA['royal-bag'];
+        csTitle.innerText = data.title;
+        document.getElementById('cs-category').innerText = data.category;
+        document.getElementById('cs-image').src = data.image;
+        document.getElementById('cs-challenge').innerText = data.challenge;
+        document.getElementById('cs-solution').innerText = data.solution;
+    }
     startCountdown();
-    loadBriefs();
+    if (document.getElementById('briefs-list')) loadBriefs();
 
     // 0.3 PRICING CALCULATOR ENGINE
     const serviceSel = document.getElementById('calc-service');
@@ -97,18 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
             let total = 0;
             const tierGroup = document.getElementById('calc-tier-group');
 
-            if (service === 'packaging') {
-                tierGroup.style.opacity = '1';
-                tierGroup.style.pointerEvents = 'auto';
-                total = RATES.packaging[tier] * qty;
-            } else if (service === 'branding') {
-                tierGroup.style.opacity = '1';
-                tierGroup.style.pointerEvents = 'auto';
-                total = RATES.branding[tier] * qty;
-            } else if (service === 'web') {
+            if (service === 'web') {
                 tierGroup.style.opacity = '0.3';
                 tierGroup.style.pointerEvents = 'none';
                 total = RATES.web;
+            } else {
+                tierGroup.style.opacity = '1';
+                tierGroup.style.pointerEvents = 'auto';
+                if (RATES[service]) {
+                    total = RATES[service][tier] * qty;
+                }
             }
 
             document.getElementById('calc-total').innerText = '₦' + total.toLocaleString();
@@ -195,12 +211,23 @@ function toggleTheme() {
 // 0.2 MENU TOGGLE
 function toggleMenu() {
     const menu = document.getElementById('full-menu');
-    playClick();
-    menu.classList.toggle('active');
+    if (menu) {
+        playClick();
+        menu.classList.toggle('active');
+    }
 }
 
 // 0.3 INVOICE GENERATOR
 function generateInvoice() {
+    const total = document.getElementById('calc-total').innerText;
+    if (total === "₦0" || total === "₦0.00") {
+        const messages = document.getElementById('chat-messages');
+        const aiDiv = document.createElement('div');
+        aiDiv.className = "ai-msg";
+        aiDiv.innerText = "CreativityByAkanni: Please configure the module variables before generating an invoice protocol.";
+        messages.appendChild(aiDiv);
+        return;
+    }
     window.print();
 }
 
@@ -353,7 +380,13 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // 6. FUNCTIONAL AI CHAT
 function toggleChat() {
-    document.getElementById('ai-chat-box').classList.toggle('visible');
+    const chatBox = document.getElementById('ai-chat-box');
+    const launcher = document.querySelector('.ai-chat-launcher');
+    
+    chatBox.classList.toggle('visible');
+    if (chatBox.classList.contains('visible')) {
+        launcher.classList.remove('unread');
+    }
 }
 
 function handleImageUpload(input) {
@@ -364,15 +397,15 @@ function handleImageUpload(input) {
             const imgDiv = document.createElement('div');
             imgDiv.style.margin = "10px 0";
             imgDiv.innerHTML = `
-                <div style="color:var(--accent); font-size: 0.7rem; margin-bottom:5px;">Reference Sent:</div>
-                <img src="${e.target.result}" style="width:100%; border-radius:10px; border:1px solid rgba(255,255,255,0.1);">
+                <div class="ai-msg-ref-header">Reference Sent:</div>
+                <img src="${e.target.result}" class="ai-msg-img" alt="Uploaded Reference">
             `;
             messages.appendChild(imgDiv);
             
             // Notification Simulation
             setTimeout(() => {
                 const notify = document.createElement('div');
-                notify.style.cssText = "background: rgba(0,210,255,0.1); padding: 8px; border-radius: 5px; font-size: 0.7rem; color: var(--accent); margin-top:10px;";
+                notify.className = "system-notification-box";
                 notify.innerText = "SYSTEM: Reference received. Lead node (Akanni) has been notified.";
                 messages.appendChild(notify);
                 messages.scrollTop = messages.scrollHeight;
@@ -388,6 +421,10 @@ function sendMessage() {
     
     if (input.value.trim() === "") return;
 
+    const chatBox = document.getElementById('ai-chat-box');
+    const launcher = document.querySelector('.ai-chat-launcher');
+    let storedName = localStorage.getItem('akanni_user_name') || "";
+
     const userDiv = document.createElement('div');
     userDiv.className = "user-msg";
     userDiv.innerText = input.value;
@@ -395,6 +432,13 @@ function sendMessage() {
 
     const userText = input.value.toLowerCase();
     input.value = "";
+
+    // Extract Name Memory
+    if (userText.includes("my name is")) {
+        const namePart = userText.split("my name is")[1].trim();
+        storedName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
+        localStorage.setItem('akanni_user_name', storedName);
+    }
 
     const aiDiv = document.createElement('div');
     aiDiv.className = "ai-msg thinking";
@@ -406,16 +450,46 @@ function sendMessage() {
         aiDiv.classList.remove('thinking');
         
         // Enhanced Conversational Logic
-        if(userText.includes("how are you") || userText.includes("how far") || userText.includes("sup")) {
-            aiDiv.innerText = "CreativityByAkanni: I am operating at peak efficiency. My creative nodes are fully charged. How are you today?";
+        if(userText.includes("where are you from") || userText.includes("location") || userText.includes("your base")) {
+            aiDiv.innerText = "CreativityByAkanni: I am a digital intelligence hosted within the Akanni Creative Studio cloud. Our primary design node is based in Nigeria, serving brands globally.";
+        } else if(userText.includes("paper bag") || userText.includes("nylon bag") || userText.includes("packaging")) {
+            const p = RATES.packaging;
+            aiDiv.innerText = greetingPrefix + `Ah, packaging! We offer three primary tiers for 100pcs: Standard (₦${p.standard.toLocaleString()}), Premium (₦${p.premium.toLocaleString()}), and Luxury (₦${p.luxury.toLocaleString()}). Which protocol shall we initialize?`;
+            
+            // Trigger business enquiry for this as well
+            launcher.classList.add('shake');
+            setTimeout(() => launcher.classList.remove('shake'), 1000);
+            setTimeout(() => {
+                const sysMsg = document.createElement('div');
+                sysMsg.className = "ai-msg system";
+                sysMsg.innerText = "NODE ALERT: Packaging enquiry detected. Encrypted packet dispatched to Abdulmalik.";
+                messages.appendChild(sysMsg);
+                messages.scrollTop = messages.scrollHeight;
+                fetch('https://formspree.io/f/xpqnyyqw', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ alert: "PACKAGING ENQUIRY", client_message: userText, estimated_price: document.getElementById('calc-total')?.innerText || "N/A" }) });
+            }, 1000);
+        } else if(userText.includes("website") || userText.includes("web development") || userText.includes("site")) {
+            aiDiv.innerText = greetingPrefix + "Web architecture is our forte. We build high-fidelity, conversion-focused websites. Do you require a Portfolio or E-commerce node?";
+            // Trigger business enquiry for this as well
+            launcher.classList.add('shake');
+            setTimeout(() => launcher.classList.remove('shake'), 1000);
+            setTimeout(() => {
+                const sysMsg = document.createElement('div');
+                sysMsg.className = "ai-msg system";
+                sysMsg.innerText = "NODE ALERT: Web development enquiry detected. Encrypted packet dispatched to Abdulmalik.";
+                messages.appendChild(sysMsg);
+                messages.scrollTop = messages.scrollHeight;
+                fetch('https://formspree.io/f/xpqnyyqw', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ alert: "WEB DEVELOPMENT ENQUIRY", client_message: userText, estimated_price: document.getElementById('calc-total')?.innerText || "N/A" }) });
+            }, 1000);
+        } else if(userText.includes("how are you") || userText.includes("how far") || userText.includes("sup")) {
+            aiDiv.innerText = greetingPrefix + "I am operating at peak efficiency. My creative nodes are fully charged. How are you today?";
         } else if(userText.includes("hello") || userText.includes("hi")) {
-            aiDiv.innerText = "CreativityByAkanni: Hello. Terminal active. I am the digital representative of Akanni Studio. What are we building today?";
+            aiDiv.innerText = greetingPrefix + "Hello. Terminal active. I am the digital representative of Akanni Studio. What are we building today?";
         } else if(userText.includes("fine") || userText.includes("good") || userText.includes("great")) {
-            aiDiv.innerText = "CreativityByAkanni: Glad to hear that. A positive mindset is the first step to a Bespoke Identity.";
+            aiDiv.innerText = greetingPrefix + "Glad to hear that. A positive mindset is the first step to a Bespoke Identity.";
         }
         // Business Enquiry Notification Trigger
-        else if(userText.includes("enquiry") || userText.includes("create") || userText.includes("order") || userText.includes("price") || userText.includes("cost")) {
-            aiDiv.innerText = "CreativityByAkanni: Analyzing request... Business enquiry detected. Dispatched high-priority alert to Abdulmalik.";
+        else if(userText.includes("enquiry") || userText.includes("create") || userText.includes("order") || userText.includes("price") || userText.includes("cost") || userText.includes("logo") || userText.includes("design")) {
+            aiDiv.innerText = greetingPrefix + "Analyzing request... I've detected a project enquiry. Dispatched high-priority alert to Abdulmalik.";
             
             setTimeout(() => {
                 const sysMsg = document.createElement('div');
@@ -430,7 +504,7 @@ function sendMessage() {
                 messages.scrollTop = messages.scrollHeight;
             }, 1000);
         } else {
-            aiDiv.innerText = "CreativityByAkanni: Input archived. I have logged this to the central studio node.";
+            aiDiv.innerText = greetingPrefix + "Input archived. I have logged this request to the central studio node.";
         }
         messages.scrollTop = messages.scrollHeight;
     }, 1500);

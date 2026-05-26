@@ -9,7 +9,6 @@ body {
 }
 .login-container {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
     padding: 40px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -51,3 +50,5 @@ body {
 .btn-login:hover { background: #0095ff; }
 .auth-links { margin-top: 20px; font-size: 0.85rem; display: flex; justify-content: space-between; }
 .auth-links a { color: #00d2ff; text-decoration: none; }
+.back-home-wrapper { margin-top: 25px; font-size: 0.8rem; }
+.back-home-link { color: #aaa; text-decoration: none; }

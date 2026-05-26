@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study | Akanni Node</title>
+<link rel="stylesheet" href="portfolio.css">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="reveal active">
+    <div id="preloader"><div class="loader-text">RETRIEVING PROJECT DATA...</div></div>
+    <div class="grain"></div>
+    <div class="mesh-gradient"></div>
+
+    <nav class="navbar">
+        <div class="logo"><a href="index.html" class="back-home-link" style="color:white">← BACK TO TERMINAL</a></div>
+    </nav>
+
+    <main class="dashboard-container">
+        <header class="dash-header">
+            <div>
+                <p id="cs-category" class="welcome-label">CATEGORY_UNDEFINED</p>
+                <h1 id="cs-title" class="client-name-heading">Project Protocol</h1>
+            </div>
+            <div class="price-tag">Status: Archivally Verified</div>
+        </header>
+
+        <div class="dash-grid">
+            <section class="stat-card">
+                <img id="cs-image" src="" alt="Project Visual" class="ai-msg-img" style="max-height: 500px; margin-bottom: 30px;">
+                <h3>The Challenge</h3>
+                <p id="cs-challenge" style="margin-bottom: 25px;">Data pending...</p>
+                
+                <h3>The Solution</h3>
+                <p id="cs-solution">Data pending...</p>
+            </section>
+
+            <aside>
+                <div class="stat-card">
+                    <h3 class="sys-logs-title">Project Scope</h3>
+                    <div class="log-entry">Node: High-Fidelity</div>
+                    <div class="log-entry">Duration: 14 Cycles</div>
+                    <div class="log-entry">Outcome: Optimal</div>
+                </div>
+                <a href="contact.html" class="btn-invoice btn-deploy" style="text-align:center; display:block; text-decoration:none;">INITIALIZE SIMILAR PROJECT</a>
+            </aside>
+        </div>
+    </main>
+
+    <div id="ai-chat-box">
+        <div class="chat-header">CreativityByAkanni Node</div>
+        <div class="chat-body" id="chat-messages"></div>
+    </div>
+    <div class="ai-chat-launcher" onclick="toggleChat()">🤖</div>
+    <script src="main.js"></script>
+</body>
+</html>
